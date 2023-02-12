@@ -25,8 +25,16 @@
 params [["_crate", objNull], "_pickUp", ["_player", player]];
 
 if (_pickUp) then {
-    if (([_player] call A3A_fnc_countAttachedObjects) > 0) exitWith {systemChat "you are already carrying something."};
+
+    // Replacing same effect with same variable
+    if !(isNil "A3A_heldObject")
+    exitWith {
+        systemChat "you are already carrying something."
+    };
+
     _crate attachTo [_player, [0, 1.5, 0], "Pelvis"];
+    missionNamespace setVariable ["A3A_heldObject", _crate];
+
     _player setVariable ["carryingCrate", true];
     [_player ,_crate] spawn {
         params ["_player", "_crate"];
@@ -45,5 +53,6 @@ if (_pickUp) then {
         _crate setVelocity [0,0,0.3];
     };
     _player setVariable ["carryingCrate", nil];
+    missionNamespace setVariable ["A3A_heldObject",nil];
     _player forceWalk false;
 };

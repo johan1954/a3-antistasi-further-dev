@@ -586,8 +586,8 @@
     </Container>
     <Container name="credits_generic">
       <Key ID="STR_antistasi_credits_generic_author_text">
-        <Original>The Official Antistasi Community and Barbolani</Original>
-        <English>The Official Antistasi Community and Barbolani</English>
+        <Original>The Official Antistasi Community and Barbolani; Modified by Johan</Original>
+        <English>The Official Antistasi Community and Barbolani; Modified by Johan</English>
         <French>La Communauté Officielle d'Antistasi et Barbolani</French>
         <Russian>Сообщество Antistasi</Russian>
         <German>Die offizielle Antistasi Community und Barbolani</German>
@@ -985,17 +985,17 @@
         <Chinesesimp>这座岛很小, 但敌人众多。当心!</Chinesesimp>
       </Key>
       <Key ID="STR_antistasi_mission_info_tanoa_mapname_short_text">
-        <Original>Antistasi Tanoa</Original>
-        <English>Antistasi Tanoa</English>
+        <Original>Antistasi Tanoa - Johan Edit</Original>
+        <English>Antistasi Tanoa - Johan Edit</English>
         <Russian>Antistasi Таноа</Russian>
         <Chinesesimp>Antistasi Tanoa</Chinesesimp>
       </Key>
       <Key ID="STR_antistasi_mission_info_tanoa_mapname_text">
-        <Original>Antistasi - Warlords of the Pacific</Original>
-        <English>Antistasi - Warlords of the Pacific</English>
+        <Original>Antistasi - Warlords of the Pacific - Johan Edit</Original>
+        <English>Antistasi - Warlords of the Pacific - Johan Edit</English>
         <French>Antistasi - Les Seigneurs de Guerre du Pacifique</French>
         <Russian>Antistasi - Хозяева Тихого Океана</Russian>
-        <German>Antistasi - Warlords of the Pacific</German>
+        <German>Antistasi - Warlords of the Pacific Edit</German>
         <Czech>Antistasi - Vojevůdci Pacifiku</Czech>
         <Korean>안티스타시 - 태평양의 군벌</Korean>
         <Chinesesimp>Antistasi - 太平洋军阀之战</Chinesesimp>

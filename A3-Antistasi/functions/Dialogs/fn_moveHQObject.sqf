@@ -7,11 +7,26 @@ _playerX = _this select 1;
 _id = _this select 2;
 _isStatic = (_thingX isKindOf "StaticWeapon");
 
-if (!_isStatic && player != theBoss) exitWith {["Move HQ", "Only Player Commander is allowed to move HQ assets."] call A3A_fnc_customHint;};
-if (!(isNull attachedTo _thingX)) exitWith {["Move HQ", "The asset you want to move is being moved by another player."] call A3A_fnc_customHint;};
-if (vehicle _playerX != _playerX) exitWith {["Move HQ", "You cannot move HQ assets while in a vehicle."] call A3A_fnc_customHint;};
+if (!_isStatic && player != theBoss) exitWith {
+	["Move HQ", "Only Player Commander is allowed to move HQ assets."] call A3A_fnc_customHint;
+	};
 
-if (([_playerX] call A3A_fnc_countAttachedObjects) > 0) exitWith {["Move HQ", "You have other things attached, you cannot move this."] call A3A_fnc_customHint;};
+if (!(isNull attachedTo _thingX)) exitWith {
+	["Move HQ", "The asset you want to move is being moved by another player."] call A3A_fnc_customHint;
+	};
+
+if (vehicle _playerX != _playerX) exitWith {
+	["Move HQ", "You cannot move HQ assets while in a vehicle."] call A3A_fnc_customHint;
+	};
+
+// Replacing attached objects with a global client variable for carrying items
+// Removes bug where Advanced vaulting mod inhibits the player from picking up any objects.
+if !(isNil "A3A_heldObject")
+exitWith {
+	["Move HQ", "You have other things attached, you cannot move this."] 
+	call A3A_fnc_customHint;
+};
+
 _sites = markersX select {sidesX getVariable [_x,sideUnknown] == teamPlayer};
 _markerX = [_sites,_playerX] call BIS_fnc_nearestPosition;
 _size = [_markerX] call A3A_fnc_sizeMarker;
@@ -26,6 +41,7 @@ if !(_isStatic) then { _thingX removeAction _id };
 private _spacing = 2 max (1 - (boundingBoxReal _thingX select 0 select 1));
 private _height = 0.1 - (boundingBoxReal _thingX select 0 select 2);
 _thingX attachTo [_playerX, [0, _spacing, _height]];
+missionNamespace setVariable ["A3A_heldObject", _thingX];
 
 private _fnc_placeObject = {
 	params [["_thingX", objNull], ["_playerX", objNull], ["_dropObjectActionIndex", -1]];
@@ -39,6 +55,7 @@ private _fnc_placeObject = {
 		_playerX setVelocity [0,0,0];
 		_thingX setVelocity [0,0,0];
 		detach _thingX;
+		missionNamespace setVariable ["A3A_heldObject",nil];
 	};
 
 	if (_dropObjectActionIndex != -1) then {
